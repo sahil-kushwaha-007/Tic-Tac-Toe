@@ -1,0 +1,153 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background: black;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+h1 {
+  color: white;
+  margin: 20px;
+  font-size: 2.5em;
+  animation: textGlow 1.5s infinite alternate;
+}
+
+@keyframes textGlow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 50px #0ff;
+  }
+}
+
+.container {
+  position: relative;
+  text-align: center;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 5px;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  font-size: 2em;
+  cursor: pointer;
+  border: 2px solid black;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.cell:hover {
+  background: #f0f0f0;
+  transform: scale(1.1);
+}
+
+.cell.active {
+  animation: bounce 0.5s;
+}
+
+#popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+#popup.hidden {
+  display: none;
+}
+
+#popup #winner {
+  font-size: 2em;
+  color: black;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  background: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.3s;
+  animation: bounce 1s infinite alternate;
+}
+
+button:hover {
+  background: #ddd;
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes clickAnimation {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.click-effect {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  animation: clickAnimation 0.5s forwards;
+}
+
+@keyframes fall {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 110%;
+  }
+}
+
+.snowflake {
+  position: fixed;
+  font-size: 2em;
+  animation: fall 3s infinite;
+  color: white;
+}
